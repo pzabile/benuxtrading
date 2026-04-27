@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-label="BENUX">
+  <style>
+    .b-fill { fill: #0c0c0c; }
+    .b-dot  { fill: #c8a44a; }
+    @media (prefers-color-scheme: dark) { .b-fill { fill: #f4efe4; } }
+  </style>
+  <g font-family="Inter, Helvetica, Arial, sans-serif" font-weight="900" font-size="76" letter-spacing="-2">
+    <text x="0" y="72" class="b-fill">BENUX</text>
+  </g>
+  <circle cx="298" cy="72" r="9" class="b-dot"/>
+</svg>

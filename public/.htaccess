@@ -1,0 +1,9 @@
+# BENUX Trading - public/.htaccess
+Options -Indexes
+
+DirectoryIndex index.php
+
+# Deny access to includes/sql files even if uploaded into public by mistake.
+<FilesMatch "\.(sql|md|env|ini)$">
+    Require all denied
+</FilesMatch>
