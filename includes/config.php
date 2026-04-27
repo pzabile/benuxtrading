@@ -24,8 +24,8 @@ return [
     'timezone'   => 'UTC',                           // default tz; user can override per account
 
     // --- Uploads ---
-    'upload_dir'   => __DIR__ . '/../public/uploads',
-    'upload_url'   => 'uploads',                     // relative URL to /public
+    'upload_dir'   => __DIR__ . '/../uploads',
+    'upload_url'   => 'uploads',                     // relative URL from app root
     'upload_max'   => 8 * 1024 * 1024,               // 8 MB
     'allowed_ext'  => ['png','jpg','jpeg','gif','webp'],
 

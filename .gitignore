@@ -1,10 +1,10 @@
 # BENUX Trading
-/public/uploads/u*/
-/public/uploads/*.png
-/public/uploads/*.jpg
-/public/uploads/*.jpeg
-/public/uploads/*.gif
-/public/uploads/*.webp
+/uploads/u*/
+/uploads/*.png
+/uploads/*.jpg
+/uploads/*.jpeg
+/uploads/*.gif
+/uploads/*.webp
 
 # Local config overrides (do NOT commit credentials)
 /includes/config.local.php

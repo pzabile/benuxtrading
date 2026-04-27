@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
 $user = require_login();
 
-$cfg = require __DIR__ . '/../includes/config.php';
+$cfg = require __DIR__ . '/includes/config.php';
 $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $title = 'New Trade';
 $page  = 'add';
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 ?>
 <div class="card">
   <h1>Log a new trade</h1>
@@ -179,4 +179,4 @@ require __DIR__ . '/../includes/header.php';
     </div>
   </form>
 </div>
-<?php require __DIR__ . '/../includes/footer.php';
+<?php require __DIR__ . '/includes/footer.php';

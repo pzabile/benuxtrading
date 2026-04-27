@@ -5,14 +5,14 @@
  * It will create the database tables. Delete this file after install.
  */
 
-require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/includes/db.php';
 
 $title = 'Install';
 $page  = '';
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 
 try {
-    $sql = file_get_contents(__DIR__ . '/../sql/schema.sql');
+    $sql = file_get_contents(__DIR__ . '/sql/schema.sql');
     // Split on ';' that ends a statement.
     $stmts = array_filter(array_map('trim', explode(';', $sql)));
     foreach ($stmts as $s) {
@@ -30,4 +30,4 @@ try {
     echo '<p>Check <code>/includes/config.php</code> credentials, then reload this page.</p></div>';
 }
 
-require __DIR__ . '/../includes/footer.php';
+require __DIR__ . '/includes/footer.php';

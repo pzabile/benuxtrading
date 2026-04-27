@@ -6,14 +6,14 @@ mark TP / SL / BE / Manual close, and watch your stats — win rate, profit fact
 expectancy, max drawdown, equity curve, by-pair / by-hour / by-session / by-strategy
 breakdowns, plus automated coaching insights.
 
-> Drop the `public/` folder into Hostinger's `public_html` and you're live.
+> Upload the whole project folder to Hostinger and you're live — no path juggling.
 
 ---
 
 ## Features
 
 - **Trade journal** — pair, direction, lot size, entry / exit / SL / TP, fees, risk %, R:R planned & actual, outcome (`OPEN`, `TP`, `SL`, `BE`, `MANUAL`), session (auto-detected), strategy, setup, tags, emotion, confidence, notes, mistakes / lessons.
-- **Screenshots** — multiple per trade. Either paste external URLs (TradingView snapshot links etc.), or upload PNG/JPG/WebP files (stored under `public/uploads/u<userId>/`).
+- **Screenshots** — multiple per trade. Either paste external URLs (TradingView snapshot links etc.), or upload PNG/JPG/WebP files (stored under `uploads/u<userId>/`).
 - **Auto P&L math** — pip count and dollar P&L computed from price diff × pip-value × lot size. Works for majors, JPY pairs and gold.
 - **Analytics**
   - Total / net / fees, win rate, profit factor, expectancy
@@ -31,27 +31,22 @@ breakdowns, plus automated coaching insights.
 ## File map
 
 ```
-benuxtrading/
-├── includes/                 ← server-only PHP (NOT web-accessible on Hostinger)
-│   ├── config.php            ← edit DB credentials here
-│   ├── db.php
-│   ├── auth.php
-│   ├── helpers.php
-│   ├── header.php
-│   └── footer.php
-├── public/                   ← upload contents to public_html/
-│   ├── index.php
-│   ├── install.php           ← run once, then DELETE
-│   ├── register.php / login.php / logout.php
-│   ├── dashboard.php
-│   ├── trades.php / add_trade.php / edit_trade.php / trade_view.php / delete_trade.php
-│   ├── analytics.php
-│   ├── settings.php
-│   ├── export.php            ← CSV download
-│   ├── uploads/              ← screenshot storage (writable)
-│   └── assets/css|js|img
-├── sql/schema.sql            ← table definitions
-└── README.md
+benuxtrading/                ← upload this whole folder (or its contents)
+├── index.php                ← web entry, redirects to login or dashboard
+├── install.php              ← run ONCE, then DELETE
+├── register.php / login.php / logout.php
+├── dashboard.php
+├── trades.php / add_trade.php / edit_trade.php / trade_view.php / delete_trade.php
+├── analytics.php
+├── settings.php
+├── export.php               ← CSV download
+├── .htaccess                ← blocks .sql / .md / .env / .ini at the web root
+├── assets/                  ← css / js / logo
+├── uploads/                 ← screenshot storage (writable, PHP execution disabled)
+├── includes/                ← PHP includes (.htaccess denies all direct access)
+│   ├── config.php           ← EDIT: DB credentials go here
+│   ├── db.php / auth.php / helpers.php / header.php / footer.php
+└── sql/schema.sql           ← table definitions, used by install.php
 ```
 
 ---
@@ -66,16 +61,14 @@ In hPanel → **Databases → MySQL Databases**, create:
 - a user with full privileges on that DB
 - note the **host**, **db name**, **user**, **password**
 
-### 2. Upload the files
+### 2. Upload the files (single-folder layout)
 
-You can use Hostinger File Manager or FTP.
+Using Hostinger File Manager (or FTP), upload **everything in this repo** into your domain's web root. Two common targets:
 
-- Upload the **contents of `public/`** into `public_html/` (so `index.php` lives at the web root).
-- Upload the `includes/` and `sql/` folders **one level above** `public_html/` (recommended), e.g. into `domains/yourdomain.com/`.
+- **As the whole site**: drop the contents into `public_html/` so `index.php` lives at `https://yourdomain.com/`.
+- **As a sub-app** (recommended if you already have a site): upload into a subfolder like `public_html/trading/` so it lives at `https://yourdomain.com/trading/`.
 
-If your hosting plan does not allow files above the web root, you can put `includes/` and `sql/` next to `public_html/` (Hostinger does support this) or, as a fallback, upload them inside `public_html/` — the bundled `.htaccess` blocks direct access to `*.sql`, `*.md`, `*.env`, `*.ini`. PHP files outside the document root remain protected as long as they're not under `public_html/`.
-
-> If you put `includes/` somewhere non-default, edit the `require __DIR__ . '/../includes/...'` paths at the top of each file under `public/`.
+You do **not** need to put anything outside `public_html`. The bundled `.htaccess` files inside `includes/` and `sql/` already block direct browser access to those folders.
 
 ### 3. Edit `includes/config.php`
 
@@ -100,7 +93,7 @@ Visit `https://yourdomain.com/register.php` and start logging trades.
 
 ### 6. Make sure uploads work
 
-The folder `public_html/uploads/` must be **writable** by PHP (chmod `755` is usually fine on Hostinger). The bundled `uploads/.htaccess` disables PHP execution inside it.
+The `uploads/` folder must be **writable** by PHP (chmod `755` is usually fine on Hostinger). The bundled `uploads/.htaccess` disables PHP execution inside it.
 
 ---
 
@@ -108,14 +101,14 @@ The folder `public_html/uploads/` must be **writable** by PHP (chmod `755` is us
 
 ```bash
 # from the project root
-php -S localhost:8000 -t public
+php -S localhost:8000
 # open http://localhost:8000/install.php
 ```
 
 Set DB credentials via env vars if you don't want to edit `config.php`:
 
 ```bash
-DB_HOST=127.0.0.1 DB_NAME=benux_trading DB_USER=root DB_PASS= php -S localhost:8000 -t public
+DB_HOST=127.0.0.1 DB_NAME=benux_trading DB_USER=root DB_PASS= php -S localhost:8000
 ```
 
 ---

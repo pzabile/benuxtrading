@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
 $user = require_login();
-$cfg  = require __DIR__ . '/../includes/config.php';
+$cfg  = require __DIR__ . '/includes/config.php';
 
 $id = (int)($_GET['id'] ?? $_POST['id'] ?? 0);
 $st = db()->prepare('SELECT * FROM trades WHERE id=? AND user_id=?');
@@ -121,7 +121,7 @@ $shots = $shotSt->fetchAll();
 
 $title = 'Edit Trade #' . $id;
 $page  = 'trades';
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 ?>
 <div class="card">
   <h1>Edit trade #<?= (int)$t['id'] ?></h1>
@@ -209,4 +209,4 @@ require __DIR__ . '/../includes/header.php';
     </div>
   </form>
 </div>
-<?php require __DIR__ . '/../includes/footer.php';
+<?php require __DIR__ . '/includes/footer.php';

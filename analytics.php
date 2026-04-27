@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
 $user = require_login();
 
 $from = $_GET['from'] ?? '';
@@ -23,7 +23,7 @@ $pairs = array_column($pairsSt->fetchAll(), 'pair');
 
 $title = 'Analytics';
 $page  = 'analytics';
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 ?>
 <div class="card">
   <div class="row-between"><h1>Analytics</h1></div>
@@ -114,4 +114,4 @@ require __DIR__ . '/../includes/header.php';
     'strategy' => $s['by_strategy'],
 ], JSON_UNESCAPED_SLASHES) ?></script>
 <script src="assets/js/dashboard.js" defer></script>
-<?php require __DIR__ . '/../includes/footer.php';
+<?php require __DIR__ . '/includes/footer.php';

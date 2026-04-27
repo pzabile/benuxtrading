@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
 
 if (current_user()) { header('Location: dashboard.php'); exit; }
 
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $title = 'Register';
 $page  = 'register';
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 ?>
 <div class="auth-wrap">
   <form class="card auth-card" method="post" autocomplete="off">
@@ -58,4 +58,4 @@ require __DIR__ . '/../includes/header.php';
     <p class="muted">Already have an account? <a href="login.php">Log in</a></p>
   </form>
 </div>
-<?php require __DIR__ . '/../includes/footer.php';
+<?php require __DIR__ . '/includes/footer.php';

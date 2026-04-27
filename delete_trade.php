@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
 $user = require_login();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: trades.php'); exit; }
@@ -9,7 +9,7 @@ csrf_check();
 $id = (int)($_POST['id'] ?? 0);
 
 // Remove uploaded files first.
-$cfg = require __DIR__ . '/../includes/config.php';
+$cfg = require __DIR__ . '/includes/config.php';
 $st = db()->prepare(
     'SELECT s.file_path FROM screenshots s
      JOIN trades t ON t.id=s.trade_id

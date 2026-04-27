@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
 $user = require_login();
 
 $err = $msg = '';
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $title = 'Settings';
 $page  = 'settings';
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 ?>
 <div class="card">
   <h1>Settings</h1>
@@ -61,4 +61,4 @@ require __DIR__ . '/../includes/header.php';
     <div class="form-actions"><button class="btn btn-primary">Save</button></div>
   </form>
 </div>
-<?php require __DIR__ . '/../includes/footer.php';
+<?php require __DIR__ . '/includes/footer.php';

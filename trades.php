@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/helpers.php';
 $user = require_login();
 
 // Filters
@@ -34,7 +34,7 @@ $strats = array_column($stratsSt->fetchAll(), 'strategy');
 
 $title = 'Trades';
 $page  = 'trades';
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 ?>
 <div class="card">
   <div class="row-between">
@@ -105,4 +105,4 @@ require __DIR__ . '/../includes/header.php';
     </div>
   <?php endif; ?>
 </div>
-<?php require __DIR__ . '/../includes/footer.php';
+<?php require __DIR__ . '/includes/footer.php';
